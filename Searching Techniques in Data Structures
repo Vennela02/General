@@ -1,0 +1,172 @@
+Searching is an operation or a technique that helps finds the place of a given element or value in the list.
+Any search is said to be successful or unsuccessful depending upon whether the element that is being searched is found or not.
+Some of the standard searching technique that is being followed in the data structure is listed below:
+
+1)Linear Search or Sequential Search
+2)Binary Search
+
+Linear Search :
+*************
+       This is the simplest method for searching. In this technique of searching, the element to be found in searching the elements to be found is searched sequentially in the list.
+This method can be performed on a sorted or an unsorted list (usually arrays). In case of a sorted list searching starts from 0th element and continues until the element
+is found from the list or the element whose value is greater than (assuming the list is sorted in ascending order), the value being searched is reached.
+
+As against this, searching in case of unsorted list also begins from the 0th element and continues until the element or the end of the list is reached.
+
+The performance of the linear search can be measured by counting the comparisons done to find out an element. The number of comparison is 0(n).
+Program:
+*******
+
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter no of elements :");
+		int n=sc.nextInt();
+		int[] a=new int[n];
+		System.out.println("Enter elements :");
+		for(int i=0;i<n;i++)
+		{
+		    a[i]=sc.nextInt();
+		}
+		int flag=0;
+		System.out.println("Enter  key element :");
+		int key=sc.nextInt();
+		for(int i=0;i<n;i++)
+		{
+		    if(a[i]==key)
+		    {
+		        flag=i+1;
+		        break;
+		    }
+		}
+		if(flag!=0)
+		{
+		    System.out.println(key+" element found at location "+flag);
+		}
+		else{
+		    System.out.println("Element not found");
+		}
+	}
+}
+
+Output:
+*******
+
+Enter no of elements :
+
+5
+
+Enter elements :
+
+10 20 30 40 50
+
+Enter  key element :
+
+40
+
+40 element found at location 4
+
+
+
+Binary Search :
+***************
+
+Binary search is a very fast and efficient searching technique. It requires the list to be in sorted order. In this method, to search an element you can compare it with the present element at the center of the list. 
+If it matches, then the search is successful otherwise the list is divided into two halves: one from the 0th element to the middle element which is the center element
+(first half) another from the center element to the last element (which is the 2nd half) where all values are greater than the center element.
+
+The searching mechanism proceeds from either of the two halves depending upon whether the target element is greater or smaller than the central element. 
+If the element is smaller than the central element, then searching is done in the first half, otherwise searching is done in the second half.
+
+
+Binary Search Program Using Recursion:
+**************************************
+
+import java.util.Scanner;
+
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter no of elements :");
+		int n=sc.nextInt();
+		int[] a=new int[n];
+		System.out.println("Enter elements :");
+		for(int i=0;i<n;i++)
+		{
+		    a[i]=sc.nextInt();
+		}
+		System.out.println("Enter element to search ");
+		int key=sc.nextInt();
+		
+		
+		int flag=0;
+		int start=0;
+		int end=n-1;
+		int loc=-1;
+		 loc=binarysearch(a,start,end,key);
+		if(loc!=-1)
+		{
+		    System.out.println("Element Found at location :"+loc);
+		}
+		else
+		  System.out.println("Element Not Found");
+	
+		
+	}
+	public static 	int binarysearch(int a[],int start,int end,int key)
+		{
+		    if(start<end)
+		    {
+		        int mid=(start+end)/2;
+		        if(a[mid]==key)
+		        {
+		            return mid;
+		        }
+		        else if(a[mid]<key)
+		         return binarysearch(a,mid+1,end,key);
+		        else
+		         return binarysearch(a,start,mid-1,key);
+		    }
+		    return -1;
+		}
+}
+
+
+OUTPUT :
+******
+Enter no of elements :
+
+5
+
+Enter elements :
+
+10 20 30 40 50
+
+Enter element to search 
+
+40
+
+Element Found at location :3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
